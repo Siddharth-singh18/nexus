@@ -1,0 +1,117 @@
+// prisma/schema.prisma — Nexus Studio Complete Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ───────────────────────────────────────────
+
+enum ServiceType {
+  META_ADS
+  GOOGLE_ADS
+  VIDEO_EDITING
+  UI_UX
+  SAAS_DEV
+}
+
+enum ProjectCategory {
+  ADS
+  DESIGN
+  DEVELOPMENT
+  SAAS
+}
+
+enum LeadStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+// ─── Models ──────────────────────────────────────────
+
+model ContactLead {
+  id          String      @id @default(cuid())
+  name        String
+  email       String
+  company     String?
+  service     ServiceType
+  message     String      @db.Text
+  status      LeadStatus  @default(NEW)
+  ipAddress   String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("contact_leads")
+}
+
+model PortfolioProject {
+  id                  String          @id @default(cuid())
+  title               String
+  client              String
+  category            ProjectCategory
+  description         String          @db.Text
+  thumbnailUrl        String
+  cloudinaryPublicId  String
+  liveUrl             String?
+  caseStudyUrl        String?
+  featured            Boolean         @default(false)
+  displayOrder        Int             @default(0)
+  tags                String[]
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+
+  @@index([category])
+  @@index([featured])
+  @@map("portfolio_projects")
+}
+
+model Testimonial {
+  id              String    @id @default(cuid())
+  reviewerName    String
+  company         String
+  role            String?
+  avatarInitials  String    @db.VarChar(3)
+  avatarColor     String    @default("#7B5CF0")
+  rating          Int       @default(5)
+  text            String    @db.Text
+  published       Boolean   @default(false)
+  featured        Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+
+  @@index([published])
+  @@map("testimonials")
+}
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  bio         String?  @db.Text
+  skills      String[]
+  linkedinUrl String?
+  avatarUrl   String?
+  initials    String   @db.VarChar(3)
+  displayOrder Int     @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@map("team_members")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  lastLoginAt  DateTime?
+  createdAt    DateTime @default(now())
+
+  @@map("admin_users")
+}
