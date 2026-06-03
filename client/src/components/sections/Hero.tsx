@@ -16,7 +16,7 @@ export default function Hero() {
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } },
+    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100 } },
   };
 
   return (
@@ -38,22 +38,22 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             variants={item}
             className="text-5xl md:text-[5.5rem] font-bold tracking-tight font-[family-name:var(--font-display)] leading-[1.05]"
           >
             We grow brands <br />
             with <span className="text-[var(--accent)]">ads, design <br className="hidden md:block" />& code.</span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             variants={item}
             className="mt-6 text-lg md:text-xl text-[var(--muted)] max-w-[480px] leading-relaxed"
           >
             Meta Ads, Google Ads, video content, UI/UX, and full-stack SaaS — everything your brand needs to scale, under one roof.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             variants={item}
             className="mt-10 flex flex-wrap gap-4"
           >
@@ -72,7 +72,7 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={item}
             className="mt-12 flex items-center gap-4"
           >
@@ -107,7 +107,7 @@ export default function Hero() {
           className="hidden lg:block relative"
         >
           <div className="relative w-full max-w-[640px] mx-auto ml-10">
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               className="relative bg-white dark:bg-[var(--card-bg)] rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-[var(--border)] overflow-hidden flex transform-gpu"
@@ -130,11 +130,11 @@ export default function Hero() {
                   </div>
                 ))}
               </div>
-              
+
               {/* Main Content */}
               <div className="flex-1 p-8 flex flex-col gap-6 bg-white dark:bg-[var(--card-bg)]">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Overview</h3>
-                
+
                 {/* Stats Grid */}
                 <div className="grid grid-cols-3 gap-4">
                   {[
@@ -154,22 +154,22 @@ export default function Hero() {
 
                 {/* Chart Area */}
                 <div className="flex-1 min-h-[160px] rounded-2xl border border-gray-100 dark:border-[var(--border)] bg-[#f8f9fa]/50 dark:bg-[var(--section-bg)] p-5 flex flex-col justify-end gap-2 relative overflow-hidden">
-                   <div className="absolute top-4 left-5 text-sm font-bold text-gray-900 dark:text-white">Revenue Overview</div>
-                   <div className="flex items-end h-24 gap-1.5 mt-6 w-full">
-                     {[30, 45, 35, 60, 40, 75, 55, 80, 60, 90, 75, 100].map((height, i) => (
-                       <motion.div
-                         key={i}
-                         initial={{ height: 0 }}
-                         animate={{ height: `${height}%` }}
-                         transition={{ duration: 1, delay: 0.5 + i * 0.05 }}
-                         className="flex-1 bg-[var(--accent)] hover:bg-[var(--accent-hover)] rounded-t-sm opacity-80 transition-colors"
-                       />
-                     ))}
-                   </div>
+                  <div className="absolute top-4 left-5 text-sm font-bold text-gray-900 dark:text-white">Revenue Overview</div>
+                  <div className="flex items-end h-24 gap-1.5 mt-6 w-full">
+                    {[30, 45, 35, 60, 40, 75, 55, 80, 60, 90, 75, 100].map((height, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${height}%` }}
+                        transition={{ duration: 1, delay: 0.5 + i * 0.05 }}
+                        className="flex-1 bg-[var(--accent)] hover:bg-[var(--accent-hover)] rounded-t-sm opacity-80 transition-colors"
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
-            
+
             {/* Floating Elements mimicking the mockup */}
             <motion.div
               animate={{ y: [0, -15, 0] }}
@@ -183,20 +183,20 @@ export default function Hero() {
                 <div className="absolute bottom-1 left-4 w-4 h-4 bg-green-500 rounded-full" />
               </div>
             </motion.div>
-            
+
             <motion.div
               animate={{ y: [0, 15, 0] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
               className="absolute -left-10 bottom-24 bg-white/90 backdrop-blur-md dark:bg-[var(--card-bg)]/90 p-5 rounded-3xl shadow-xl border border-white/50 dark:border-[var(--border)] z-10 w-48"
             >
-               <div className="text-sm text-gray-500 dark:text-[var(--muted)] font-medium mb-1 flex justify-between">
-                 <span>ROAS</span>
-                 <span className="text-emerald-500 text-xs font-bold bg-emerald-100 dark:bg-emerald-500/20 px-2 py-0.5 rounded-full">↑ 22.1%</span>
-               </div>
-               <div className="text-3xl font-bold text-gray-900 dark:text-white">4.2x</div>
-               <div className="mt-4 w-full h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
-                 <div className="h-full bg-[var(--accent)] w-[75%] rounded-full" />
-               </div>
+              <div className="text-sm text-gray-500 dark:text-[var(--muted)] font-medium mb-1 flex justify-between">
+                <span>ROAS</span>
+                <span className="text-emerald-500 text-xs font-bold bg-emerald-100 dark:bg-emerald-500/20 px-2 py-0.5 rounded-full">↑ 22.1%</span>
+              </div>
+              <div className="text-3xl font-bold text-gray-900 dark:text-white">4.2x</div>
+              <div className="mt-4 w-full h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                <div className="h-full bg-[var(--accent)] w-[75%] rounded-full" />
+              </div>
             </motion.div>
           </div>
         </motion.div>
