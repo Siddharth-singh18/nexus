@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card-bg: var(--card-bg);
+  --color-section-bg: var(--section-bg);
+}
+
+@layer base {
+  :root {
+    --background: #FAFAFA;
+    --foreground: #0A0A14;
+    --accent: #7B5CF0;
+    --accent-hover: #6B4CE0;
+    --muted: #6B7280;
+    --border: #E5E7EB;
+    --card-bg: #FFFFFF;
+    --section-bg: #F5F3FF;
+  }
+  .dark {
+    --background: #0A0A14;
+    --foreground: #F0EDE8;
+    --accent: #7B5CF0;
+    --accent-hover: #8B6CF0;
+    --muted: #9CA3AF;
+    --border: #1E1E2E;
+    --card-bg: #111128;
+    --section-bg: #0D0D1A;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(circle, var(--muted) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.2;
+}
+
+.glass-nav {
+  backdrop-filter: blur(16px);
+  background-color: color-mix(in srgb, var(--background) 80%, transparent);
+  border-bottom: 1px solid var(--border);
+}
